@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../ui/Button";
 import { startGame } from "../player/PlayerSlice";
+import { motion } from "framer-motion";
 
 function ScoreBackground() {
   const { currentPlayer, timer, winner } = useSelector((store) => store.player);
@@ -18,20 +19,36 @@ function ScoreBackground() {
   const playerTurn =
     currentPlayer === "playerOne" ? "Player 1's" : "Player 2's";
 
-  const finalWinner = winner === "playerOne" ? "Player 1" : "Player 2";
+  const finalWinner =
+    winner === "playerOne"
+      ? "Player 1"
+      : winner === "tie"
+        ? "It's a tie"
+        : "Player 2";
+
+  // const finalBg = !winner ? 'bg-dark-purple' : winner === 'playerOne' ? 'bg-red' : winner === 'tie' ? 'bg-dark-purple' : 'bg-yellow';
 
   return (
-    <div
-      className={`-mt-16 flex w-full justify-center rounded-[6rem_6rem_0_0] ${
+    <motion.div
+      className={`mobile:mt-4 -mt-16 flex w-full justify-center rounded-[6rem_6rem_0_0] ${
         !winner
           ? "bg-dark-purple"
           : winner === "playerOne"
             ? "bg-red"
-            : "bg-yellow"
+            : winner === "tie"
+              ? "bg-dark-purple"
+              : "bg-yellow"
       }`}
     >
       {!winner && (
-        <div className="relative z-[99]">
+        <motion.div
+          key="playerTurn"
+          initial={{ opacity: 0, scale: 0.5, y: 100 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.5, y: 100 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="relative z-[21]"
+        >
           <img src={currentMove} alt="current player turn" />
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
             <p className="text-[1.6rem] font-bold uppercase">
@@ -42,19 +59,29 @@ function ScoreBackground() {
               <span>s</span>
             </p>
           </div>
-        </div>
+        </motion.div>
       )}
-
       {winner && (
-        <div className="relative z-[99]">
-          <div className="flex w-[28.5rem] flex-col items-center rounded-[2rem] border-[3px] border-black bg-white py-7 font-bold uppercase shadow-black-sh">
+        <motion.div
+          key="winnerBox"
+          initial={{ opacity: 0, scale: 0.5, y: 100 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.5, y: 100 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="relative z-[21]"
+        >
+          <div
+            className={`flex w-[28.5rem] flex-col items-center rounded-[2rem] border-[3px] border-black bg-white py-7 font-bold uppercase shadow-black-sh ${
+              winner === "tie" ? "gap-6" : ""
+            }`}
+          >
             <p className="text-[1.6rem]">{finalWinner} </p>
-            <p className="text-[5.6rem]">wins</p>
+            {winner !== "tie" && <p className="text-[5.6rem]">wins</p>}
             <Button onClick={handleRestartGame}>Play Again</Button>
           </div>
-        </div>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 }
 
