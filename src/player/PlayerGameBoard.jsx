@@ -15,8 +15,6 @@ function PlayerGameBoard() {
     useSelector((store) => store.player);
   const dispatch = useDispatch();
 
-  const [isWinnerUpdated, setIsWinnerUpdated] = useState(false);
-
   function handleColumnClick(column) {
     if (!winner) {
       if (gameBoard[0][column]) {
@@ -29,6 +27,7 @@ function PlayerGameBoard() {
     }
   }
 
+  const [isWinnerUpdated, setIsWinnerUpdated] = useState(false);
   useEffect(() => {
     if (!isMenuOpen && !isWinnerUpdated) {
       if (winner === "playerOne") {

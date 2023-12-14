@@ -26,9 +26,6 @@ const playerSlice = createSlice({
     updateCurrentPlayer(state, action) {
       state.currentPlayer = action.payload;
     },
-    updateWinner(state, action) {
-      state.winner = action.payload;
-    },
     updateTimer(state) {
       if (state.timer === 0) {
         state.winner =
@@ -38,8 +35,14 @@ const playerSlice = createSlice({
       }
     },
     startGame(state) {
+      console.log(state.currentPlayer);
+
       state.gameBoard = initialGameBoard;
-      state.currentPlayer = "playerOne";
+
+      state.currentPlayer =
+        state.currentPlayer === "playerOne" ? "playerOne" : "playerTwo";
+
+      // state.currentPlayer = "playerTwo";
       state.winner = null;
       state.timer = 30;
       state.winningTiles = [];
@@ -191,7 +194,6 @@ export const {
   updateCurrentPlayer,
   updatePlayerOneScore,
   updatePlayerTwoScore,
-  updateWinner,
   updateTimer,
   dropBall,
   switchPlayer,
