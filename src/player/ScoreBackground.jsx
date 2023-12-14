@@ -75,7 +75,13 @@ function ScoreBackground() {
               winner === "tie" ? "gap-6" : ""
             }`}
           >
-            <p className="text-[1.6rem]">{finalWinner} </p>
+            <p
+              className={`${
+                winner === "tie" ? "text-[4rem]" : "text-[1.6rem]"
+              }`}
+            >
+              {finalWinner}{" "}
+            </p>
             {winner !== "tie" && <p className="text-[5.6rem]">wins</p>}
             <Button onClick={handleRestartGame}>Play Again</Button>
           </div>

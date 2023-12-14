@@ -14,7 +14,11 @@ function PlayerGameBoardItem({ rowIndex, cell, isWinner }) {
       }}
     >
       <div className="z-2 relative mobile:absolute mobile:top-[-14%]">
-        <img src={`./${cell}.svg`} alt={`player-${cell}`} className="" />
+        <img
+          src={`./${cell}.svg`}
+          alt={`player-${cell}`}
+          className="mobile:h-[4.07rem]"
+        />
         <AnimatePresence>
           {isWinner && (
             <motion.p

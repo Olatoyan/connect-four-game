@@ -47,18 +47,21 @@ const playerSlice = createSlice({
     },
     dropBall(state, action) {
       const { column, currentPlayer } = action.payload;
-      const isSmallScreen = window.innerWidth <= 700;
+      // const isSmallScreen = window.innerWidth <= 700;
 
       for (let row = 5; row >= 0; row--) {
         if (!state.gameBoard[row][column]) {
           state.gameBoard[row][column] = state.gameBoard[row][column] =
             currentPlayer === "playerOne"
-              ? isSmallScreen
-                ? "counter-red-small"
-                : "counter-red-large"
-              : isSmallScreen
-                ? "counter-yellow-small"
-                : "counter-yellow-large";
+              ? "counter-red-large"
+              : "counter-yellow-large";
+          // currentPlayer === "playerOne"
+          //   ? isSmallScreen
+          //     ? "counter-red-small"
+          //     : "counter-red-large"
+          //   : isSmallScreen
+          //     ? "counter-yellow-small"
+          //     : "counter-yellow-large";
           break;
         }
       }
@@ -73,18 +76,21 @@ const playerSlice = createSlice({
       const { gameBoard, currentPlayer } = state;
       let winningCombination = null;
 
-      const isSmallScreen = window.innerWidth <= 700;
+      // const isSmallScreen = window.innerWidth <= 700;
 
       // Helper function to check for a win in a specific direction
       const checkDirection = (startRow, startCol, rowDelta, colDelta) => {
         const cellValue =
           currentPlayer === "playerOne"
-            ? isSmallScreen
-              ? "counter-red-small"
-              : "counter-red-large"
-            : isSmallScreen
-              ? "counter-yellow-small"
-              : "counter-yellow-large";
+            ? "counter-red-large"
+            : "counter-yellow-large";
+        // currentPlayer === "playerOne"
+        //   ? isSmallScreen
+        //     ? "counter-red-small"
+        //     : "counter-red-large"
+        //   : isSmallScreen
+        //     ? "counter-yellow-small"
+        //     : "counter-yellow-large";
 
         for (let i = 0; i < 4; i++) {
           const row = startRow + i * rowDelta;
@@ -149,12 +155,17 @@ const playerSlice = createSlice({
         }
       }
 
+      // Check for a tie
+      const isTie = gameBoard.every((row) =>
+        row.every((cell) => cell !== null),
+      );
+      if (isTie) {
+        state.winner = "tie";
+      }
+
       // If there's a winner, update the winning tiles with a special symbol
       if (state.winner && winningCombination) {
         state.winningTiles = winningCombination;
-        // winningCombination.forEach(([row, col]) => {
-        //   gameBoard[row][col] = "x"; // Replace with your special symbol
-        // });
       }
     },
 

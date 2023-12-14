@@ -37,7 +37,10 @@ function PlayerGameBoard() {
       }
       if (winner === "playerTwo") {
         dispatch(updatePlayerTwoScore());
+        setIsWinnerUpdated(true);
+      }
 
+      if (winner === "tie") {
         setIsWinnerUpdated(true);
       }
     }
