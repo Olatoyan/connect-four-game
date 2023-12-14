@@ -1,9 +1,9 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 function PlayerGameBoardItem({ rowIndex, cell, isWinner }) {
   return (
     <motion.div
-      className="tablet:h-[3.3924rem] tablet:w-[3.3973rem] tablet:inset-auto mobile:top-1/2 mobile:flex mobile:items-center mobile:justify-center absolute inset-0 z-20 h-[7.5rem] w-[7rem]"
+      className="absolute inset-0 h-[7.5rem] w-[7rem] tablet:inset-auto tablet:h-[3.8rem] tablet:w-[3.8rem] mobile:top-[44%] mobile:flex mobile:items-center mobile:justify-center"
       initial={{ y: 58.4 * -(rowIndex + 1) }}
       animate={{ y: 0 }}
       transition={{
@@ -13,15 +13,30 @@ function PlayerGameBoardItem({ rowIndex, cell, isWinner }) {
         damping: 20,
       }}
     >
-      <div className="mobile:absolute mobile:top-[-14%] relative">
+      <div className="z-2 relative mobile:absolute mobile:top-[-14%]">
         <img src={`./${cell}.svg`} alt={`player-${cell}`} className="" />
-        {isWinner && (
-          <p
-            className={`mobile:text-[2rem] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[4rem] font-bold text-white`}
-          >
-            O
-          </p>
-        )}
+        <AnimatePresence>
+          {isWinner && (
+            <motion.p
+              initial={{
+                scale: 0,
+                opacity: 0,
+
+                transform: "translate(-50%, -50%)",
+              }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              transition={{
+                type: "spring",
+                stiffness: 200,
+                damping: 20,
+              }}
+              className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[4rem] font-bold text-white mobile:text-[2rem]`}
+            >
+              O
+            </motion.p>
+          )}
+        </AnimatePresence>
       </div>
     </motion.div>
   );

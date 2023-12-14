@@ -64,12 +64,12 @@ function PlayerGameBoard() {
     : "./board-layer-black-large.svg";
 
   return (
-    <div className="desktop:col-span-full desktop:row-start-2 tablet:w-[33.5rem] tablet:h-[28rem] mobile:justify-self-center mobile:pb-[0.6rem] mobile:pt-0 mobile:pl-4 relative z-[5] grid h-[58.4rem] w-[63.2rem] grid-cols-7 grid-rows-6 rounded-[4rem] pb-16 pl-6 pt-6">
+    <div className="relative z-[5] grid h-[58.4rem] w-[63.2rem] grid-cols-7 grid-rows-6 rounded-[4rem] pb-16 pl-6 pt-6 desktop:col-span-full desktop:row-start-2 tablet:h-[31rem] tablet:w-[33.5rem] mobile:justify-self-center mobile:pb-[3.5rem] mobile:pl-[0.8rem] mobile:pt-0">
       {gameBoard.map((row, rowIndex) =>
         row.map((cell, columnIndex) => (
           <button
             key={`${rowIndex}-${columnIndex}`}
-            className="cell tablet:h-[3.3973rem] tablet:w-[3.3924rem] relative z-20 h-[6.4rem] w-[6.4rem] cursor-pointer rounded-full "
+            className="cell relative z-20 h-[6.4rem] w-[6.4rem] cursor-pointer rounded-full tablet:h-[3.8rem] tablet:w-[3.8rem] "
             onClick={() => handleColumnClick(columnIndex)}
           >
             {cell && (

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 function PlayerScoreBoard({ img, score, player }) {
   return (
     <div
-      className={` desktop:w-[27.2rem] mobile:w-auto desktop:justify-between desktop:px-8 flex w-[14rem] flex-col items-center rounded-[2rem] border-[3px] border-black bg-white font-bold text-black shadow-black-sh ${
+      className={` desktop:w-[27.2rem] mobile:w-auto desktop:justify-between desktop:px-8 mobile:px-4 flex w-[14rem] flex-col items-center rounded-[2rem] border-[3px] border-black bg-white font-bold text-black shadow-black-sh ${
         player === "Player 1" ? "desktop:flex-row" : "desktop:flex-row-reverse"
       }`}
     >
@@ -14,8 +14,8 @@ function PlayerScoreBoard({ img, score, player }) {
           player === "Player 1" ? "desktop:-ml-20" : "desktop:-mr-20"
         }`}
       />
-      <div className="desktop:px-8 desktop:justify-between desktop:w-full tablet:flex-row mobile:flex-col flex flex-col items-center">
-        <p className="mobile:text-[1.6rem] text-[2rem] uppercase">{player}</p>
+      <div className="desktop:px-8 mobile:px-4 desktop:justify-between desktop:w-full tablet:flex-row mobile:flex-col flex flex-col items-center">
+        <p className="mobile:text-[1.4rem] text-[2rem] uppercase">{player}</p>
         <motion.p
           className="mobile:text-[3.2rem] text-[5.6rem]"
           key={score}

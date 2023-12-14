@@ -15,7 +15,7 @@ function PlayerBoardHeader() {
   }
 
   return (
-    <header className="tablet:px-7 mobile:w-full desktop:w-[70%] mb-24 flex w-[40%] items-center justify-between">
+    <header className="mb-24 mt-12 flex w-[40%] items-center justify-between desktop:w-[70%] tablet:px-7 mobile:mb-20 mobile:w-full">
       <Button onClick={openMenu}>Menu</Button>
       <Logo />
       <Button onClick={handleRestart}>Restart</Button>

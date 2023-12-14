@@ -30,7 +30,7 @@ function ScoreBackground() {
 
   return (
     <motion.div
-      className={`mobile:mt-4 -mt-16 flex w-full justify-center rounded-[6rem_6rem_0_0] ${
+      className={` flex h-[23.4rem] w-full justify-center rounded-[6rem_6rem_0_0]  ${
         !winner
           ? "bg-dark-purple"
           : winner === "playerOne"
@@ -47,10 +47,10 @@ function ScoreBackground() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.5, y: 100 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="relative z-[21]"
+          className="relative z-[21] -mt-16 mobile:-mt-8"
         >
           <img src={currentMove} alt="current player turn" />
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+          <div className="absolute left-1/2 top-[34%] -translate-x-1/2 -translate-y-1/2 text-center">
             <p className="text-[1.6rem] font-bold uppercase">
               {playerTurn} Turn
             </p>
@@ -68,7 +68,7 @@ function ScoreBackground() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.5, y: 100 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="relative z-[21]"
+          className="relative z-[21] -mt-16 mobile:-mt-8"
         >
           <div
             className={`flex w-[28.5rem] flex-col items-center rounded-[2rem] border-[3px] border-black bg-white py-7 font-bold uppercase shadow-black-sh ${
