@@ -25,7 +25,7 @@ function MenuBox() {
   return (
     <AnimatePresence>
       {isMenuOpen && (
-        <motion.div className="absolute inset-0 z-[30] flex min-h-screen w-full items-center justify-center">
+        <motion.div className="absolute inset-0 z-[30] flex min-h-screen w-full items-center justify-center mobile:px-6">
           <motion.div
             className="z-[30] w-full max-w-[50rem] rounded-[4rem] border-[3px] border-black bg-purple px-16 py-20 font-bold shadow-black-sh"
             initial={{ opacity: 0, scaleY: 0 }}
@@ -33,24 +33,24 @@ function MenuBox() {
             exit={{ opacity: 0, scaleY: 0 }}
             transition={{ duration: 0.3, delay: 0.3 }}
           >
-            <h2 className="pb-[4.4rem] text-center text-[5.6rem] uppercase text-white">
+            <h2 className="pb-[4.4rem] text-center text-[5.6rem] uppercase text-white mobile:text-[3.2rem]">
               Pause
             </h2>
             <div className="flex flex-col gap-12">
               <button
-                className="rounded-[2rem] border-[3px] border-black bg-white p-8 text-[2.4rem] font-bold uppercase shadow-black-sh transition-all duration-300 hover:shadow-purple-sh"
+                className="rounded-[2rem] border-[3px] border-black bg-white p-8 text-[2.4rem] font-bold uppercase shadow-black-sh transition-all duration-300 hover:shadow-purple-sh mobile:p-6 mobile:text-[1.8rem]"
                 onClick={handleCloseMenu}
               >
                 Continue Game
               </button>
               <button
-                className="rounded-[2rem] border-[3px] border-black bg-white p-8 text-[2.4rem] font-bold uppercase shadow-black-sh transition-all duration-300 hover:shadow-purple-sh"
+                className="rounded-[2rem] border-[3px] border-black bg-white p-8 text-[2.4rem] font-bold uppercase shadow-black-sh transition-all duration-300 hover:shadow-purple-sh mobile:p-6 mobile:text-[1.8rem]"
                 onClick={handleRestart}
               >
                 Restart
               </button>
               <button
-                className="rounded-[2rem] border-[3px] border-black bg-red p-8 text-[2.4rem] font-bold uppercase shadow-black-sh transition-all duration-300 hover:shadow-purple-sh"
+                className="rounded-[2rem] border-[3px] border-black bg-red p-8 text-[2.4rem] font-bold uppercase shadow-black-sh transition-all duration-300 hover:shadow-purple-sh mobile:p-6 mobile:text-[1.8rem]"
                 onClick={quitGame}
               >
                 Quit Game
