@@ -3,8 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialGameBoard = Array.from({ length: 6 }, () => Array(7).fill(null));
 
 const initialState = {
-  playerOneScore: 0,
-  playerTwoScore: 0,
+  playerOneScore: parseInt(localStorage.getItem("playerOneScore")) || 0,
+  playerTwoScore: parseInt(localStorage.getItem("playerTwoScore")) || 0,
+
   currentPlayer: "playerOne",
   winner: null,
   timer: 30,
@@ -19,9 +20,11 @@ const playerSlice = createSlice({
   reducers: {
     updatePlayerOneScore(state) {
       state.playerOneScore++;
+      localStorage.setItem("playerOneScore", state.playerOneScore.toString());
     },
     updatePlayerTwoScore(state) {
       state.playerTwoScore++;
+      localStorage.setItem("playerTwoScore", state.playerTwoScore.toString());
     },
 
     updateTimer(state) {
