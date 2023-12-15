@@ -3,18 +3,22 @@ import {
   dropBall,
   switchPlayer,
   checkForWin,
-  updatePlayerOneScore,
-  updatePlayerTwoScore,
+  updatePlayerScore,
+  updateComputerScore,
   updateTimer,
-} from "../player/PlayerSlice";
+  // makeComputerMove,
+} from "../computer/ComputerSlice";
 
-import PlayerGameBoardItem from "./PlayerGameBoardItem";
 import { useEffect, useState } from "react";
+import ComputerGameBoardItem from "./ComputerGameBoardItem";
+import { determineComputerMove } from "./computerHelpers";
 import { motion } from "framer-motion";
-function PlayerGameBoard() {
+
+function ComputerGameBoard() {
   const { currentPlayer, gameBoard, winner, winningTiles, isMenuOpen } =
-    useSelector((store) => store.player);
+    useSelector((store) => store.computer);
   const dispatch = useDispatch();
+  const [isWinnerUpdated, setIsWinnerUpdated] = useState(false);
 
   function handleColumnClick(column) {
     if (!winner) {
@@ -22,21 +26,40 @@ function PlayerGameBoard() {
         return;
       }
 
-      dispatch(dropBall({ column, currentPlayer }));
-      dispatch(checkForWin());
-      dispatch(switchPlayer());
+      if (currentPlayer === "player") {
+        dispatch(dropBall({ column, currentPlayer }));
+        dispatch(checkForWin());
+        dispatch(switchPlayer());
+      }
     }
   }
 
-  const [isWinnerUpdated, setIsWinnerUpdated] = useState(false);
+  useEffect(() => {
+    if (!winner) {
+      if (currentPlayer === "computer") {
+        const computerMove = determineComputerMove(gameBoard);
+        const randomDelay =
+          Math.floor(Math.random() * (4000 - 1000 + 1)) + 1000;
+
+        setTimeout(() => {
+          dispatch(
+            dropBall({ column: computerMove, currentPlayer: "computer" }),
+          );
+          dispatch(checkForWin());
+          dispatch(switchPlayer());
+        }, randomDelay);
+      }
+    }
+  }, [winner, currentPlayer, dispatch, gameBoard]);
+
   useEffect(() => {
     if (!isMenuOpen && !isWinnerUpdated) {
-      if (winner === "playerOne") {
-        dispatch(updatePlayerOneScore());
+      if (winner === "player") {
+        dispatch(updatePlayerScore());
         setIsWinnerUpdated(true);
       }
-      if (winner === "playerTwo") {
-        dispatch(updatePlayerTwoScore());
+      if (winner === "computer") {
+        dispatch(updateComputerScore());
         setIsWinnerUpdated(true);
       }
 
@@ -82,7 +105,7 @@ function PlayerGameBoard() {
             onClick={() => handleColumnClick(columnIndex)}
           >
             {cell && (
-              <PlayerGameBoardItem
+              <ComputerGameBoardItem
                 rowIndex={rowIndex}
                 cell={cell}
                 isWinner={winningTiles?.some(
@@ -109,4 +132,4 @@ function PlayerGameBoard() {
   );
 }
 
-export default PlayerGameBoard;
+export default ComputerGameBoard;

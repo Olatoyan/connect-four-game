@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialGameBoard = Array.from({ length: 6 }, () => Array(7).fill(null));
 
 const initialState = {
-  playerOneScore: 0,
-  playerTwoScore: 0,
-  currentPlayer: "playerOne",
+  playerScore: 0,
+  computerScore: 0,
+  currentPlayer: "player",
   winner: null,
   timer: 30,
   gameBoard: initialGameBoard,
@@ -13,34 +13,30 @@ const initialState = {
   isMenuOpen: false,
 };
 
-const playerSlice = createSlice({
-  name: "player",
+const computerSlice = createSlice({
+  name: "computer",
   initialState,
   reducers: {
-    updatePlayerOneScore(state) {
-      state.playerOneScore++;
+    updatePlayerScore(state) {
+      state.playerScore++;
     },
-    updatePlayerTwoScore(state) {
-      state.playerTwoScore++;
+    updateComputerScore(state) {
+      state.computerScore++;
     },
-
     updateTimer(state) {
       if (state.timer === 0) {
-        state.winner =
-          state.currentPlayer === "playerOne" ? "playerTwo" : "playerOne";
+        state.winner = state.currentPlayer === "player" ? "computer" : "player";
       } else if (state.timer > 0) {
         state.timer--;
       }
     },
     startGame(state) {
-      console.log(state.currentPlayer);
-
       state.gameBoard = initialGameBoard;
 
       state.currentPlayer =
-        state.currentPlayer === "playerOne" ? "playerOne" : "playerTwo";
+        state.currentPlayer === "player" ? "player" : "computer";
 
-      // state.currentPlayer = "playerTwo";
+      // state.currentPlayer = "computer";
       state.winner = null;
       state.timer = 30;
       state.winningTiles = [];
@@ -53,10 +49,10 @@ const playerSlice = createSlice({
       for (let row = 5; row >= 0; row--) {
         if (!state.gameBoard[row][column]) {
           state.gameBoard[row][column] = state.gameBoard[row][column] =
-            currentPlayer === "playerOne"
+            currentPlayer === "player"
               ? "counter-red-large"
               : "counter-yellow-large";
-          // currentPlayer === "playerOne"
+          // currentPlayer === "player"
           //   ? isSmallScreen
           //     ? "counter-red-small"
           //     : "counter-red-large"
@@ -69,7 +65,7 @@ const playerSlice = createSlice({
     },
     switchPlayer(state) {
       state.currentPlayer =
-        state.currentPlayer === "playerOne" ? "playerTwo" : "playerOne";
+        state.currentPlayer === "player" ? "computer" : "player";
       state.timer = 30;
     },
 
@@ -82,10 +78,10 @@ const playerSlice = createSlice({
       // Helper function to check for a win in a specific direction
       const checkDirection = (startRow, startCol, rowDelta, colDelta) => {
         const cellValue =
-          currentPlayer === "playerOne"
+          currentPlayer === "player"
             ? "counter-red-large"
             : "counter-yellow-large";
-        // currentPlayer === "playerOne"
+        // currentPlayer === "player"
         //   ? isSmallScreen
         //     ? "counter-red-small"
         //     : "counter-red-large"
@@ -174,9 +170,9 @@ const playerSlice = createSlice({
       state.isMenuOpen = action.payload;
     },
     resetGame(state) {
-      state.playerOneScore = 0;
-      state.playerTwoScore = 0;
-      state.currentPlayer = "playerOne";
+      state.playerScore = 0;
+      state.computerScore = 0;
+      state.currentPlayer = "player";
       state.winner = null;
       state.timer = 30;
       state.gameBoard = initialGameBoard;
@@ -186,11 +182,11 @@ const playerSlice = createSlice({
   },
 });
 
-export default playerSlice.reducer;
+export default computerSlice.reducer;
 
 export const {
-  updatePlayerOneScore,
-  updatePlayerTwoScore,
+  updatePlayerScore,
+  updateComputerScore,
   updateTimer,
   dropBall,
   switchPlayer,
@@ -198,4 +194,5 @@ export const {
   startGame,
   toggleMenu,
   resetGame,
-} = playerSlice.actions;
+  makeComputerMove,
+} = computerSlice.actions;
