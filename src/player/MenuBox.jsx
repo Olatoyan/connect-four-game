@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { resetGame, startGame, toggleMenu } from "./PlayerSlice";
+import { startGame, toggleMenu } from "./PlayerSlice";
 import { AnimatePresence, motion } from "framer-motion";
 
 function MenuBox() {
@@ -19,7 +19,6 @@ function MenuBox() {
   function quitGame() {
     dispatch(toggleMenu(false));
     navigate("/");
-    dispatch(resetGame());
   }
 
   return (
