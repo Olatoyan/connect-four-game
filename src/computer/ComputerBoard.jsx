@@ -1,4 +1,3 @@
-// import { useSelector } from "react-redux";
 import MenuBox from "./MenuBox";
 import ComputerBoardHeader from "./ComputerBoardHeader";
 import ComputerGameBoardBox from "./ComputerGameBoardBox";

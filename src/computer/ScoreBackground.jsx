@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import Button from "../ui/Button";
 import { startGame } from "../computer/ComputerSlice";
 import { motion } from "framer-motion";
+import Button from "../ui/Button";
 
 function ScoreBackground() {
   const { currentPlayer, timer, winner } = useSelector(

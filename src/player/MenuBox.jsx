@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { resetGame, startGame, toggleMenu } from "./PlayerSlice";
 import { AnimatePresence, motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 
 function MenuBox() {
   const { isMenuOpen } = useSelector((store) => store.player);
@@ -28,9 +28,9 @@ function MenuBox() {
         <motion.div className="absolute inset-0 z-[30] flex min-h-screen w-full items-center justify-center mobile:px-6">
           <motion.div
             className="z-[30] w-full max-w-[50rem] rounded-[4rem] border-[3px] border-black bg-purple px-16 py-20 font-bold shadow-black-sh"
-            initial={{ opacity: 0, scaleY: 0 }}
-            animate={{ opacity: 1, scaleY: 1 }}
-            exit={{ opacity: 0, scaleY: 0 }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
             transition={{ duration: 0.3, delay: 0.3 }}
           >
             <h2 className="pb-[4.4rem] text-center text-[5.6rem] uppercase text-white mobile:text-[3.2rem]">

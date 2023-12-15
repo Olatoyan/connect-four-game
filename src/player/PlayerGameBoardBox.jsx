@@ -17,7 +17,9 @@ function PlayerGameBoardBox() {
         player="Player 1"
         from="left"
       />
+
       <PlayerGameBoard />
+
       <ScoreBoard
         img="./player-two.svg"
         score={playerTwoScore}

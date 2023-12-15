@@ -1,12 +1,7 @@
-import { AnimatePresence } from "framer-motion";
 import HomeDetail from "../home/HomeDetail";
 
 function Homepage() {
-  return (
-    <AnimatePresence>
-      <HomeDetail />
-    </AnimatePresence>
-  );
+  return <HomeDetail />;
 }
 
 export default Homepage;

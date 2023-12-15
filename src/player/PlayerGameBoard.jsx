@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { motion } from "framer-motion";
+
 import {
   dropBall,
   switchPlayer,
@@ -8,9 +11,7 @@ import {
   updateTimer,
 } from "../player/PlayerSlice";
 
-import PlayerGameBoardItem from "./PlayerGameBoardItem";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import GameBoardItem from "../ui/GameBoardItem";
 function PlayerGameBoard() {
   const { currentPlayer, gameBoard, winner, winningTiles, isMenuOpen } =
     useSelector((store) => store.player);
@@ -82,7 +83,7 @@ function PlayerGameBoard() {
             onClick={() => handleColumnClick(columnIndex)}
           >
             {cell && (
-              <PlayerGameBoardItem
+              <GameBoardItem
                 rowIndex={rowIndex}
                 cell={cell}
                 isWinner={winningTiles?.some(

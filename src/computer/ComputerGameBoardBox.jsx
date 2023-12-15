@@ -15,7 +15,9 @@ function ComputerGameBoardBox() {
         player="You"
         from="left"
       />
+
       <ComputerGameBoard />
+
       <ScoreBoard
         img="./cpu.svg"
         score={computerScore}

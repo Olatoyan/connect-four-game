@@ -35,8 +35,6 @@ const computerSlice = createSlice({
 
       state.currentPlayer =
         state.currentPlayer === "player" ? "player" : "computer";
-
-      // state.currentPlayer = "computer";
       state.winner = null;
       state.timer = 30;
       state.winningTiles = [];
@@ -52,13 +50,6 @@ const computerSlice = createSlice({
             currentPlayer === "player"
               ? "counter-red-large"
               : "counter-yellow-large";
-          // currentPlayer === "player"
-          //   ? isSmallScreen
-          //     ? "counter-red-small"
-          //     : "counter-red-large"
-          //   : isSmallScreen
-          //     ? "counter-yellow-small"
-          //     : "counter-yellow-large";
           break;
         }
       }
@@ -73,21 +64,11 @@ const computerSlice = createSlice({
       const { gameBoard, currentPlayer } = state;
       let winningCombination = null;
 
-      // const isSmallScreen = window.innerWidth <= 700;
-
-      // Helper function to check for a win in a specific direction
       const checkDirection = (startRow, startCol, rowDelta, colDelta) => {
         const cellValue =
           currentPlayer === "player"
             ? "counter-red-large"
             : "counter-yellow-large";
-        // currentPlayer === "player"
-        //   ? isSmallScreen
-        //     ? "counter-red-small"
-        //     : "counter-red-large"
-        //   : isSmallScreen
-        //     ? "counter-yellow-small"
-        //     : "counter-yellow-large";
 
         for (let i = 0; i < 4; i++) {
           const row = startRow + i * rowDelta;
@@ -160,7 +141,7 @@ const computerSlice = createSlice({
         state.winner = "tie";
       }
 
-      // If there's a winner, update the winning tiles with a special symbol
+      // Set the winning tiles
       if (state.winner && winningCombination) {
         state.winningTiles = winningCombination;
       }

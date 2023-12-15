@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
-import Button from "../ui/Button";
-import Logo from "../ui/Logo";
 import { startGame, toggleMenu } from "./PlayerSlice";
 import { motion } from "framer-motion";
+import Button from "../ui/Button";
+import Logo from "../ui/Logo";
 
 function PlayerBoardHeader() {
   const dispatch = useDispatch();

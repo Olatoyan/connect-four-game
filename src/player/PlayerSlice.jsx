@@ -33,14 +33,10 @@ const playerSlice = createSlice({
       }
     },
     startGame(state) {
-      console.log(state.currentPlayer);
-
       state.gameBoard = initialGameBoard;
 
       state.currentPlayer =
         state.currentPlayer === "playerOne" ? "playerOne" : "playerTwo";
-
-      // state.currentPlayer = "playerTwo";
       state.winner = null;
       state.timer = 30;
       state.winningTiles = [];
@@ -48,7 +44,6 @@ const playerSlice = createSlice({
     },
     dropBall(state, action) {
       const { column, currentPlayer } = action.payload;
-      // const isSmallScreen = window.innerWidth <= 700;
 
       for (let row = 5; row >= 0; row--) {
         if (!state.gameBoard[row][column]) {
@@ -56,13 +51,6 @@ const playerSlice = createSlice({
             currentPlayer === "playerOne"
               ? "counter-red-large"
               : "counter-yellow-large";
-          // currentPlayer === "playerOne"
-          //   ? isSmallScreen
-          //     ? "counter-red-small"
-          //     : "counter-red-large"
-          //   : isSmallScreen
-          //     ? "counter-yellow-small"
-          //     : "counter-yellow-large";
           break;
         }
       }
@@ -77,21 +65,11 @@ const playerSlice = createSlice({
       const { gameBoard, currentPlayer } = state;
       let winningCombination = null;
 
-      // const isSmallScreen = window.innerWidth <= 700;
-
-      // Helper function to check for a win in a specific direction
       const checkDirection = (startRow, startCol, rowDelta, colDelta) => {
         const cellValue =
           currentPlayer === "playerOne"
             ? "counter-red-large"
             : "counter-yellow-large";
-        // currentPlayer === "playerOne"
-        //   ? isSmallScreen
-        //     ? "counter-red-small"
-        //     : "counter-red-large"
-        //   : isSmallScreen
-        //     ? "counter-yellow-small"
-        //     : "counter-yellow-large";
 
         for (let i = 0; i < 4; i++) {
           const row = startRow + i * rowDelta;
@@ -164,7 +142,7 @@ const playerSlice = createSlice({
         state.winner = "tie";
       }
 
-      // If there's a winner, update the winning tiles with a special symbol
+      // Set the winning tiles
       if (state.winner && winningCombination) {
         state.winningTiles = winningCombination;
       }

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import Button from "../ui/Button";
-import { startGame } from "../player/PlayerSlice";
 import { motion } from "framer-motion";
+import { startGame } from "../player/PlayerSlice";
+import Button from "../ui/Button";
 
 function ScoreBackground() {
   const { currentPlayer, timer, winner } = useSelector((store) => store.player);
@@ -26,8 +26,6 @@ function ScoreBackground() {
         ? "It's a tie"
         : "Player 2";
 
-  // const finalBg = !winner ? 'bg-dark-purple' : winner === 'playerOne' ? 'bg-red' : winner === 'tie' ? 'bg-dark-purple' : 'bg-yellow';
-
   return (
     <motion.div
       className={` flex h-[23.4rem] w-full justify-center rounded-[6rem_6rem_0_0]  ${
@@ -50,7 +48,7 @@ function ScoreBackground() {
           className="relative z-[21] -mt-16 mobile:-mt-8"
         >
           <img src={currentMove} alt="current player turn" />
-          <div className="absolute left-1/2 top-[34%] -translate-x-1/2 -translate-y-1/2 text-center">
+          <div className="absolute left-1/2 top-[34%] w-full -translate-x-1/2 -translate-y-1/2 text-center">
             <p className="text-[1.6rem] font-bold uppercase">
               {playerTurn} Turn
             </p>

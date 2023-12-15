@@ -8,8 +8,7 @@ import { AnimatePresence } from "framer-motion";
 function App() {
   const location = useLocation();
   return (
-    // <BrowserRouter>
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Homepage />} />
         <Route path="player" element={<PlayerPage />} />
@@ -17,7 +16,6 @@ function App() {
         <Route path="rules" element={<RulesPage />} />
       </Routes>
     </AnimatePresence>
-    // </BrowserRouter>
   );
 }
 

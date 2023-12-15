@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { motion } from "framer-motion";
+
 import {
   dropBall,
   switchPlayer,
@@ -6,13 +9,10 @@ import {
   updatePlayerScore,
   updateComputerScore,
   updateTimer,
-  // makeComputerMove,
 } from "../computer/ComputerSlice";
-
-import { useEffect, useState } from "react";
-import ComputerGameBoardItem from "./ComputerGameBoardItem";
 import { determineComputerMove } from "./computerHelpers";
-import { motion } from "framer-motion";
+
+import GameBoardItem from "../ui/GameBoardItem";
 
 function ComputerGameBoard() {
   const { currentPlayer, gameBoard, winner, winningTiles, isMenuOpen } =
@@ -105,7 +105,7 @@ function ComputerGameBoard() {
             onClick={() => handleColumnClick(columnIndex)}
           >
             {cell && (
-              <ComputerGameBoardItem
+              <GameBoardItem
                 rowIndex={rowIndex}
                 cell={cell}
                 isWinner={winningTiles?.some(

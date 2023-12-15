@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 
-function ComputerGameBoardItem({ rowIndex, cell, isWinner }) {
+function GameBoardItem({ rowIndex, cell, isWinner }) {
   return (
     <motion.div
       className="absolute inset-0 h-[7.5rem] w-[7rem] tablet:inset-auto tablet:h-[3.8rem] tablet:w-[3.8rem] mobile:top-[44%] mobile:flex mobile:items-center mobile:justify-center"
@@ -46,4 +46,4 @@ function ComputerGameBoardItem({ rowIndex, cell, isWinner }) {
   );
 }
 
-export default ComputerGameBoardItem;
+export default GameBoardItem;

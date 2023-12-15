@@ -1,8 +1,10 @@
 import { useDispatch } from "react-redux";
+import { motion } from "framer-motion";
+
+import { startGame, toggleMenu } from "./ComputerSlice";
+
 import Button from "../ui/Button";
 import Logo from "../ui/Logo";
-import { startGame, toggleMenu } from "./ComputerSlice";
-import { motion } from "framer-motion";
 
 function ComputerBoardHeader() {
   const dispatch = useDispatch();
