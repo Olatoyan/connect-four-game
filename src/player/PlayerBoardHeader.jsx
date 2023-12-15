@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import Button from "../ui/Button";
 import Logo from "../ui/Logo";
 import { startGame, toggleMenu } from "./PlayerSlice";
+import { motion } from "framer-motion";
 
 function PlayerBoardHeader() {
   const dispatch = useDispatch();
@@ -15,11 +16,18 @@ function PlayerBoardHeader() {
   }
 
   return (
-    <header className="mb-24 mt-12 flex w-[40%] items-center justify-between desktop:w-[70%] tablet:px-7 mobile:mb-20 mobile:w-full">
+    <motion.header
+      header
+      className="mb-24 mt-12 flex w-[40%] items-center justify-between desktop:w-[70%] tablet:px-7 mobile:mb-20 mobile:w-full"
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0, opacity: 0 }}
+      transition={{ duration: 0.8, ease: "easeInOut" }}
+    >
       <Button onClick={openMenu}>Menu</Button>
       <Logo />
       <Button onClick={handleRestart}>Restart</Button>
-    </header>
+    </motion.header>
   );
 }
 

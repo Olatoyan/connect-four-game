@@ -12,7 +12,7 @@ function ComputerGameBoardBox() {
       <ScoreBoard
         img="./player-one.svg"
         score={playerScore}
-        player="you"
+        player="You"
         from="left"
       />
       <ComputerGameBoard />

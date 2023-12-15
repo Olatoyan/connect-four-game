@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom";
 import Logo from "../ui/Logo";
-import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 function HomeDetail() {
   return (
-    <AnimatePresence>
-      <div className="absolute left-1/2 top-1/2 flex w-full max-w-[50rem] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-28 rounded-[4rem] border-[3px] border-black bg-purple px-16 py-28 shadow-black-sh">
+    <motion.section
+      className="flex min-h-screen items-center justify-center"
+      initial={{ scaleY: 0 }}
+      animate={{ scaleY: 1 }}
+      exit={{ scaleY: 0 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+    >
+      <motion.div className="left-1/2 top-1/2 flex w-full max-w-[50rem] flex-col items-center gap-28 rounded-[4rem] border-[3px] border-black bg-purple px-16 py-28 shadow-black-sh mobile:border-none mobile:px-8 mobile:shadow-none">
         <Logo />
 
         <div className="flex w-full flex-col gap-12 text-[2.4rem] font-bold uppercase">
@@ -30,8 +36,8 @@ function HomeDetail() {
             </p>
           </Link>
         </div>
-      </div>
-    </AnimatePresence>
+      </motion.div>
+    </motion.section>
   );
 }
 
