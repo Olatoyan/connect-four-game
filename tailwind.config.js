@@ -20,6 +20,7 @@ export default {
         desktop: { max: "62.5rem" },
         tablet: { max: "43.75rem" },
         mobile: { max: "37.5rem" },
+        mobileSmall: { max: "25rem" },
       },
     },
   },

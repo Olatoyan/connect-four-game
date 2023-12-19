@@ -49,7 +49,7 @@ function ScoreBackground() {
         >
           <img src={currentMove} alt="current player turn" />
           <div className="absolute left-1/2 top-[34%] w-full -translate-x-1/2 -translate-y-1/2 text-center">
-            <p className="text-[1.6rem] font-bold uppercase">
+            <p className="mobileSmall:text-[1.4rem] text-[1.6rem] font-bold uppercase">
               {playerTurn} Turn
             </p>
             <p className="text-[5.6rem] font-bold">

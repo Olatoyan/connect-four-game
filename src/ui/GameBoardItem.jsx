@@ -1,10 +1,13 @@
 import { AnimatePresence, motion } from "framer-motion";
 
 function GameBoardItem({ rowIndex, cell, isWinner }) {
+  const windowWidth = window.innerWidth <= 700;
+  const initialY = windowWidth ? 31 * -(rowIndex + 1) : 58.4 * -(rowIndex + 1);
+
   return (
     <motion.div
       className="absolute inset-0 h-[7.5rem] w-[7rem] tablet:inset-auto tablet:h-[3.8rem] tablet:w-[3.8rem] mobile:top-[44%] mobile:flex mobile:items-center mobile:justify-center"
-      initial={{ y: 58.4 * -(rowIndex + 1) }}
+      initial={{ y: initialY }}
       animate={{ y: 0 }}
       transition={{
         duration: 0.5,

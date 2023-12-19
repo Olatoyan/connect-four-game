@@ -18,12 +18,14 @@ function ScoreBoard({ img, score, player, from }) {
         alt="player"
         className={`-mt-12 mb-6 desktop:mb-0 desktop:mt-0 ${
           player === "Player 1" || player === "You"
-            ? "desktop:-ml-20"
-            : "desktop:-mr-20"
+            ? "desktop:-ml-16"
+            : "desktop:-mr-16"
         }`}
       />
       <div className="flex flex-col items-center desktop:w-full desktop:justify-between desktop:px-8 tablet:flex-row mobile:flex-col mobile:px-4">
-        <p className="text-[2rem] uppercase mobile:text-[1.6rem]">{player}</p>
+        <p className="mobileSmall:text-[1.4rem] text-[2rem] uppercase mobile:text-[1.6rem]">
+          {player}
+        </p>
         <motion.p
           className="text-[5.6rem] mobile:text-[3.2rem]"
           key={score}
